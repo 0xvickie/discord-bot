@@ -162,9 +162,9 @@ client.on("guildMemberAdd", async (member) => {
 
     const details = `@everyone\n` +
   `🏠 **Server:** ${member.guild.name}\n` +
-  `Username: ${member.user.tag}\n` +
+  `Username: \`${member.user.tag}\`\n` +
   `🕐 **Joined:** ${formatDate(member.joinedAt)}`
-
+  
     // Try group DM first
     if (process.env.GROUP_DM_CHANNEL_ID) {
       await sendToGroupDM(details);
