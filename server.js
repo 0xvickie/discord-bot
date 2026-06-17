@@ -146,6 +146,13 @@ async function sendLong(target, text, options = {}) {
 // MEMBER JOIN MONITOR
 // ======================
 
+function formatDate(date) {
+  const d = new Date(date);
+  const pad = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ` +
+         `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+
 client.on("guildMemberAdd", async (member) => {
   try {
     // If WATCH_GUILD_ID is set, only notify for that guild
@@ -153,14 +160,10 @@ client.on("guildMemberAdd", async (member) => {
       return;
     }
 
-    const details = `🚨 New Member Joined\n\n` +
-      `👤 Username:\`${member.user.tag}\` \n` +
-      `🆔 User ID:\`${member.user.id}\`\n` +
-      `🏠 Server:${member.guild.name} (${member.guild.id})\n` +
-      `📅 Discord Account Created:${member.user.createdAt}\n` +
-      `📥 Joined Server At:${member.joinedAt}\n\n` +
-      ` \n\n` +
-      `.`
+    const details = `@everyone\n` +
+  `🏠 **Server:** ${member.guild.name}\n` +
+  `Username: ${member.user.tag}\n` +
+  `🕐 **Joined:** ${formatDate(member.joinedAt)}`
 
     // Try group DM first
     if (process.env.GROUP_DM_CHANNEL_ID) {
