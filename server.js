@@ -16,7 +16,8 @@
 // // ======================
 // // MESSAGE MONITOR
 // // ======================   
-
+const express = require('express');
+const app = express();
 require("dotenv").config();
 
 const {
@@ -196,5 +197,7 @@ client.on("guildMemberAdd", async (member) => {
 });
 
 
-
+app.listen(3000, () => {
+  console.log('I am listening');
+});
 client.login(process.env.DISCORD_TOKEN);
