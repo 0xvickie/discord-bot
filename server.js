@@ -165,6 +165,7 @@ client.on("guildMemberAdd", async (member) => {
   `Username: \`${member.user.tag}\`\n` +
   `🕐 **Joined:** ${formatDate(member.joinedAt)}`
   
+  
     // Try group DM first
     if (process.env.GROUP_DM_CHANNEL_ID) {
       await sendToGroupDM(details);
